@@ -19,9 +19,9 @@ public class StudentController {
         return new ResponseEntity<>(service.create(student), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<Object> get(@PathVariable(name = "name", required = true) String name){
-        return new ResponseEntity<>(service.get(name), HttpStatus.OK);
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity<Object> get(@PathVariable(name = "id", required = true) Long id) throws Exception {
+        return new ResponseEntity<>(service.get(id), HttpStatus.OK);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -29,15 +29,15 @@ public class StudentController {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/{name}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<Object> update(@PathVariable(name = "name", required = true) String name, @RequestBody(required = true) Student student){
-        return new ResponseEntity<>(service.update(name, student), HttpStatus.OK);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity<Object> update(@PathVariable(name = "id", required = true) Long id, @RequestBody(required = true) Student student) throws Exception {
+        return new ResponseEntity<>(service.update(id, student), HttpStatus.OK);
 
     }
 
-    @DeleteMapping(value = "/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<Object> delete(@PathVariable(name = "name", required = true) String name){
-        service.delete(name);
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ResponseEntity<Object> delete(@PathVariable(name = "id", required = true) Long id){
+        service.delete(id);
         return new ResponseEntity<>("{\"deletedSuccess\":true}", HttpStatus.OK);
     }
 }
